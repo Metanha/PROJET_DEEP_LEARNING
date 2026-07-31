@@ -34,7 +34,7 @@ AudioSegment.converter = imageio_ffmpeg.get_ffmpeg_exe()
 
 AudioSegment.ffprobe = imageio_ffmpeg.get_ffmpeg_exe()
 
-TARGET_SAMPLE_RATE = 16_000
+TARGET_SAMPLE_RATE = 16000
 MAX_DURATION_SECONDS = 5 * 60  # 5 minutes durée maximale pour un fichier audio
 SUPPORTED_EXTENSIONS = {".wav", ".mp3"} # extensions de fichiers audio supportées pour le prétraitement
 
@@ -48,14 +48,9 @@ SUPPORTED_EXTENSIONS = {".wav", ".mp3"}
 
 class AudioValidationError(Exception):
     """Erreur levée quand un fichier audio est invalide."""
-    # on crée une exception personnalisée plutôt que de lever une ValueError générique :
-    # ça permet à l'appelant (pipeline, API) de savoir précisément qu'il s'agit
-    # d'un problème de validation audio, et pas d'une autre erreur (bug, réseau, etc.)
-
 
 def validate_audio_file(path: str) -> None:
-    # ne retourne rien (None) : 
-    # soit elle lève une exception. 
+  
     # une fonction qui traite les fichiers invalides en levant des exceptions est plus simple à utiliser que de renvoyer un booléen
 
     if not os.path.exists(path):
